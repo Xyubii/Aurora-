@@ -15,11 +15,7 @@
             --text-sub: #86868b;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', 'Cairo', sans-serif;
@@ -29,7 +25,6 @@
             transition: all 0.3s ease;
         }
 
-        /* الهيدر */
         header {
             background-color: var(--card-bg);
             padding: 15px 5%;
@@ -37,157 +32,44 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            position: sticky; top: 0; z-index: 100;
         }
 
-        .logo {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            letter-spacing: 0.5px;
-        }
+        .logo { font-size: 1.6rem; font-weight: 700; color: var(--primary-color); }
+        .header-controls { display: flex; align-items: center; gap: 15px; }
+        .badge-anno { background-color: rgba(0, 122, 255, 0.1); color: var(--primary-color); padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+        select { background-color: var(--bg-color); color: var(--text-main); border: 1px solid rgba(0,122,255,0.3); padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: 600; outline: none; }
 
-        .header-controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+        .hero { background: linear-gradient(135deg, #007aff 0%, #00c6ff 100%); color: white; padding: 50px 5%; text-align: center; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 12px; font-weight: 700; }
+        .hero p { font-size: 1.1rem; opacity: 0.95; }
 
-        .badge-anno {
-            background-color: rgba(0, 122, 255, 0.1);
-            color: var(--primary-color);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        select {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            border: 1px solid rgba(0,122,255,0.3);
-            padding: 6px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            outline: none;
-        }
-
-        /* البانر الرئيسي */
-        .hero {
-            background: linear-gradient(135deg, #007aff 0%, #00c6ff 100%);
-            color: white;
-            padding: 60px 5%;
-            text-align: center;
-        }
-
-        .hero h1 { font-size: 2.8rem; margin-bottom: 12px; font-weight: 700; }
-        .hero p { font-size: 1.2rem; opacity: 0.95; }
-
-        .container {
-            padding: 30px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 1.6rem;
-            margin: 30px 0 15px 0;
-            position: relative;
-            padding: 0 15px;
-        }
-
-        /* ضبط الخط الجانبي للعنوان حسب اتجاه اللغة */
+        .container { padding: 30px 5%; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 1.6rem; margin: 30px 0 15px 0; padding: 0 15px; }
+        
         body:not(.rtl) .section-title { border-left: 5px solid var(--primary-color); }
         body.rtl .section-title { border-right: 5px solid var(--primary-color); }
 
-        /* شبكة المواد الدراسية */
-        .subjects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .subject-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border: 1px solid rgba(0,0,0,0.02);
-            transition: transform 0.3s ease;
-        }
-
+        .subjects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .subject-card { background-color: var(--card-bg); border-radius: 12px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.02); transition: transform 0.3s ease; }
         .subject-card:hover { transform: translateY(-5px); }
         .subject-icon { font-size: 2.2rem; margin-bottom: 10px; }
         .subject-card h3 { margin-bottom: 15px; font-size: 1.3rem; font-weight: 700; }
         .pdf-list { list-style: none; }
         
-        .pdf-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #f0f0f2;
-        }
+        .pdf-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f0f0f2; }
         .pdf-item:last-child { border-bottom: none; }
+        .pdf-name { font-size: 0.95rem; color: #3a3a3c; display: flex; align-items: center; gap: 8px; }
 
-        .pdf-name {
-            font-size: 0.95rem;
-            color: #3a3a3c;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-download {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.2s;
-        }
+        .btn-download { background-color: var(--primary-color); color: white; border: none; padding: 6px 14px; border-radius: 6px; font-size: 0.85rem; cursor: pointer; font-weight: 600; transition: 0.2s; }
         .btn-download:hover { background-color: #0056b3; }
 
-        /* الكويز التفاعلي */
-        .quiz-section {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 40px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-        .quiz-option {
-            display: block;
-            background-color: var(--bg-color);
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 8px;
-            cursor: pointer;
-            border: 1px solid transparent;
-            transition: 0.2s;
-            font-weight: 500;
-        }
-        .quiz-option:hover {
-            border-color: var(--primary-color);
-            background-color: rgba(0,122,255,0.02);
-        }
+        .quiz-section { background-color: var(--card-bg); border-radius: 12px; padding: 25px; margin-top: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+        .quiz-option { display: block; background-color: var(--bg-color); padding: 12px; margin: 10px 0; border-radius: 8px; cursor: pointer; border: 1px solid transparent; transition: 0.2s; font-weight: 500; }
+        .quiz-option:hover { border-color: var(--primary-color); background-color: rgba(0,122,255,0.02); }
         .quiz-result { margin-top: 15px; font-weight: 700; display: none; }
 
-        /* الشات بوت AI */
-        .ai-section {
-            background-color: #1c1c1e;
-            color: white;
-            border-radius: 16px;
-            padding: 30px;
-            margin-top: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
+        .ai-section { background-color: #1c1c1e; color: white; border-radius: 16px; padding: 30px; margin-top: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
         .ai-header { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
         .ai-status { background-color: var(--accent-color); width: 10px; height: 10px; border-radius: 50%; animation: pulse 1.5s infinite; }
         
@@ -197,40 +79,21 @@
             100% { transform: scale(0.9); opacity: 0.7; }
         }
 
-        .chat-box {
-            background-color: #2c2c2e;
-            border-radius: 8px;
-            padding: 15px;
-            height: 220px;
-            overflow-y: auto;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
+        .chat-box { background-color: #2c2c2e; border-radius: 8px; padding: 15px; height: 250px; overflow-y: auto; margin-bottom: 15px; font-size: 0.95rem; }
         .chat-input-container { display: flex; gap: 10px; }
-        .chat-input {
-            flex: 1; background-color: #2c2c2e; border: 1px solid #48484a;
-            color: white; padding: 12px; border-radius: 8px; outline: none;
-        }
+        .chat-input { flex: 1; background-color: #2c2c2e; border: 1px solid #48484a; color: white; padding: 12px; border-radius: 8px; outline: none; }
         .btn-ai-send { background-color: var(--primary-color); color: white; border: none; padding: 0 22px; border-radius: 8px; cursor: pointer; font-weight: 600; }
 
-        /* الفوتر وإمضاء عمرو خالد */
-        footer {
-            margin-top: 50px;
-            padding: 25px;
-            text-align: center;
-            background-color: var(--card-bg);
-            border-top: 1px solid rgba(0,0,0,0.05);
-            font-size: 1rem;
-            color: var(--text-main);
-        }
+        footer { margin-top: 50px; padding: 25px; text-align: center; background-color: var(--card-bg); border-top: 1px solid rgba(0,0,0,0.05); font-size: 1rem; color: var(--text-main); }
         .designer-credit { font-weight: 700; color: var(--primary-color); }
 
-        /* تنسيقات الاتجاهات */
         .rtl { direction: rtl; text-align: right; }
         .rtl .pdf-item, .rtl header { flex-direction: row-reverse; }
     </style>
 </head>
-<body class="rtl"> <header>
+<body class="rtl">
+
+    <header>
         <div class="logo">🧠 Aurora</div>
         <div class="header-controls">
             <div class="badge-anno" id="badgeAnno">الصف الثالث الثانوي</div>
@@ -252,6 +115,7 @@
         <h2 class="section-title" id="secTitleSubjects">المصادر والمذكرات المتاحة (PDF)</h2>
         <div class="subjects-grid">
             
+            <!-- الرياضيات -->
             <div class="subject-card">
                 <div class="subject-icon">📐</div>
                 <h3 id="subMath">الرياضيات</h3>
@@ -267,6 +131,7 @@
                 </ul>
             </div>
 
+            <!-- الفيزياء -->
             <div class="subject-card">
                 <div class="subject-icon">⚡</div>
                 <h3 id="subPhys">الفيزياء</h3>
@@ -282,6 +147,7 @@
                 </ul>
             </div>
 
+            <!-- الأدب الإيطالي -->
             <div class="subject-card">
                 <div class="subject-icon">📚</div>
                 <h3 id="subLit">الأدب الإيطالي</h3>
@@ -297,6 +163,54 @@
                 </ul>
             </div>
 
+            <!-- الفلسفة -->
+            <div class="subject-card">
+                <div class="subject-icon">🏛️</div>
+                <h3 id="subPhil">الفلسفة</h3>
+                <ul class="pdf-list">
+                    <li class="pdf-item">
+                        <div class="pdf-name">📄 <span class="pdf-ph1">نيتشه وفلسفة القوة.pdf</span></div>
+                        <button class="btn-download download-text" onclick="simulateDownload('Friedrich Nietzsche')">تحميل</button>
+                    </li>
+                    <li class="pdf-item">
+                        <div class="pdf-name">📄 <span class="pdf-ph2">مدرسة التحليل النفسي لسيجموند فرويد.pdf</span></div>
+                        <button class="btn-download download-text" onclick="simulateDownload('Sigmund Freud')">تحميل</button>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- التاريخ -->
+            <div class="subject-card">
+                <div class="subject-icon">🌍</div>
+                <h3 id="subHist">التاريخ</h3>
+                <ul class="pdf-list">
+                    <li class="pdf-item">
+                        <div class="pdf-name">📄 <span class="pdf-h1">الحرب العالمية الأولى والنتائج المترتبة.pdf</span></div>
+                        <button class="btn-download download-text" onclick="simulateDownload('Prima Guerra Mondiale')">تحميل</button>
+                    </li>
+                    <li class="pdf-item">
+                        <div class="pdf-name">📄 <span class="pdf-h2">إيطاليا الفاشية والحرب العالمية الثانية.pdf</span></div>
+                        <button class="btn-download download-text" onclick="simulateDownload('Seconda Guerra Mondiale')">تحميل</button>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- اللغة الإنجليزية -->
+            <div class="subject-card">
+                <div class="subject-icon">🇬🇧</div>
+                <h3 id="subEng">اللغة الإنجليزية</h3>
+                <ul class="pdf-list">
+                    <li class="pdf-item">
+                        <div class="pdf-name">📄 <span class="pdf-e1">العصر الفيكتوري والروائي تشارلز ديكنز.pdf</span></div>
+                        <button class="btn-download download-text" onclick="simulateDownload('The Victorian Age')">تحميل</button>
+                    </li>
+                    <li class="pdf-item">
+                        <div class="pdf-name">📄 <span class="pdf-e2">جورج أورويل ورواية 1984.pdf</span></div>
+                        <button class="btn-download download-text" onclick="simulateDownload('George Orwell')">تحميل</button>
+                    </li>
+                </ul>
+            </div>
+
         </div>
 
         <div class="quiz-section">
@@ -308,12 +222,13 @@
             <p class="quiz-result" id="quizResult"></p>
         </div>
 
+        <!-- قسم الـ AI الذكي المصلح بالكامل -->
         <div class="ai-section">
             <div class="ai-header">
                 <div class="ai-status"></div>
                 <h3 id="aiTitle">مساعد الدراسة الذكي Aurora AI 🤖</h3>
             </div>
-            <p id="aiSub" style="color: #aaa; font-size: 0.9rem; margin-bottom: 15px;">اسأل الذكاء الاصطناعي عن أي معادلة أو موضوع في المنهج الإيطالي (مثال: اسأل عن "Pirandello" أو "Coulomb")</p>
+            <p id="aiSub" style="color: #aaa; font-size: 0.9rem; margin-bottom: 15px;">اسأل عن مسائل حسابية (مثل 2*2 أو 5+5) أو مواضيع المنهج الإيطالي (مثل "Pirandello" أو "Nietzsche")</p>
             
             <div class="chat-box" id="aiChatBox">
                 <div id="aiWelcomeMsg" style="color: var(--accent-color); margin-bottom: 10px;">[AI]: مرحبًا بك! أنا معلمك الذكي لمرحلة الثانوية. كيف يمكنني مساعدتك اليوم في التحضير للامتحانات؟</div>
@@ -332,119 +247,49 @@
     </footer>
 
     <script>
-        // قاعدة بيانات الترجمات الشاملة للموقع بالكامل 
         const translations = {
             ar: {
-                badgeAnno: "الصف الثالث الثانوي",
-                heroTitle: "استعد للامتحانات بثقة! 🚀",
-                heroDesc: "قم بتحميل المذكرات، نماذج الامتحانات، واستخدم الـ AI المدمج لتبسيط أصعب المواد الدراسية.",
-                secTitleSubjects: "المصادر والمذكرات المتاحة (PDF)",
-                subMath: "الرياضيات",
-                subPhys: "الفيزياء",
-                subLit: "الأدب الإيطالي",
-                pdfM1: "دراسة الدوال وقواعدها.pdf",
-                pdfM2: "النهايات والمشتقات الكاملة.pdf",
-                pdfP1: "الكهرومغناطيسية وقوانينها.pdf",
-                pdfP2: "مقدمة في فيزياء الكم.pdf",
-                pdfL1: "ملخص الأديب لويجي بيرانديلو.pdf",
-                pdfL2: "غابرييل دانونزيو والحركة الانحطاطية.pdf",
-                download: "تحميل",
-                quizMainTitle: "📝 اختبار تفاعلي سريع لمراجعة فهمك",
-                quizQuestion: "ما هي مشتقة الدالة المتغيرة f(x) = x² ؟",
-                optA: "أ) f'(x) = x",
-                optB: "ب) f'(x) = 2x",
-                optC: "ج) f'(x) = 2",
-                quizCorrect: "إجابة صحيحة وممتازة! 🎉 (f'(x) = 2x)",
-                quizWrong: "إجابة خاطئة! حاول مجدداً وتذكر قاعدة الأسس المشتقة. ❌",
-                aiTitle: "مساعد الدراسة الذكي Aurora AI 🤖",
-                aiSub: "اسأل الذكاء الاصطناعي عن أي معادلة أو موضوع في المنهج الإيطالي (مثال: اسأل عن \"Pirandello\" أو \"Coulomb\")",
-                aiWelcome: "[AI]: مرحبًا بك! أنا معلمك الذكي لمرحلة الثانوية. كيف يمكنني مساعدتك اليوم في التحضير للامتحانات؟",
-                aiPlaceholder: "اكتب سؤالك هنا بذكاء...",
-                aiSend: "إرسال",
-                aiRespPirandello: "📚 [AI]: لويجي بيرانديلو من أهم أدباء إيطاليا! ركز على فكرة 'المثالية والواقع والتعددية والمسرح داخل المسرح'، ومن أهم أعماله 'المرحوم ماتيا باسكال'.",
-                aiRespCoulomb: "⚡ [AI]: قانون كولوم ينص على أن القوة بين شحنتين تتناسب طرديًا مع حاصل ضرب الشحنتين وعكسيًا مع مربع المسافة بينهما: F = k * (q1 * q2) / r².",
-                aiRespMath: "📐 [AI]: المشتقة في الرياضيات تعبر عن معدل تغير الدالة عند نقطة معينة، وتساوي هندسياً ميل المماس لمنحنى الدالة عند تلك النقطة.",
-                aiRespDefault: "✨ [AI]: سؤال رائع! جاري تحليل قواعد البيانات التعليمية الإيطالية لتقديم أدق شرح."
+                badgeAnno: "الصف الثالث الثانوي", heroTitle: "استعد للامتحانات بثقة! 🚀", heroDesc: "قم بتحميل المذكرات، نماذج الامتحانات، واستخدم الـ AI المدمج لتبسيط أصعب المواد الدراسية.",
+                secTitleSubjects: "المصادر والمذكرات المتاحة (PDF)", subMath: "الرياضيات", subPhys: "الفيزياء", subLit: "الأدب الإيطالي", subPhil: "الفلسفة", subHist: "التاريخ", subEng: "اللغة الإنجليزية",
+                pdfM1: "دراسة الدوال وقواعدها.pdf", pdfM2: "النهايات والمشتقات الكاملة.pdf", pdfP1: "الكهرومغناطيسية وقوانينها.pdf", pdfP2: "مقدمة في فيزياء الكم.pdf",
+                pdfL1: "ملخص الأديب لويجي بيرانديلو.pdf", pdfL2: "غابرييل دانونزيو والحركة الانحطاطية.pdf", pdfPh1: "نيتشه وفلسفة القوة.pdf", pdfPh2: "مدرسة التحليل النفسي لسيجموند فرويد.pdf",
+                pdfH1: "الحرب العالمية الأولى والنتائج المترتبة.pdf", pdfH2: "إيطاليا الفاشية والحرب العالمية الثانية.pdf", pdfE1: "العصر الفيكتوري والروائي تشارلز ديكنز.pdf", pdfE2: "جورج أورويل ورواية 1984.pdf",
+                download: "تحميل", quizMainTitle: "📝 اختبار تفاعلي سريع لمراجعة فهمك", quizQuestion: "ما هي مشتقة الدالة المتغيرة f(x) = x² ؟",
+                optA: "أ) f'(x) = x", optB: "ب) f'(x) = 2x", optC: "ج) f'(x) = 2", quizCorrect: "إجابة صحيحة وممتازة! 🎉 (f'(x) = 2x)", quizWrong: "إجابة خاطئة! حاول مجدداً وتذكر قاعدة الأسس المشتقة. ❌",
+                aiTitle: "مساعد الدراسة الذكي Aurora AI 🤖", aiSub: "اسأل عن مسائل حسابية (مثل 2*2 أو 5+5) أو مواضيع المنهج الإيطالي (مثل \"Pirandello\" أو \"Nietzsche\")",
+                aiWelcome: "[AI]: مرحبًا بك! أنا معلمك الذكي لمرحلة الثانوية. كيف يمكنني مساعدتك اليوم في التحضير للامتحانات؟", aiPlaceholder: "اكتب سؤالك هنا بذكاء...", aiSend: "إرسال"
             },
             en: {
-                badgeAnno: "3rd Year - High School",
-                heroTitle: "Prepare for Exams with Confidence! 🚀",
-                heroDesc: "Download PDFs, study notes, and use the integrated AI assistant to simplify the hardest subjects.",
-                secTitleSubjects: "Available PDF Sources & Notes",
-                subMath: "Mathematics",
-                subPhys: "Physics",
-                subLit: "Italian Literature",
-                pdfM1: "Function Analysis and Rules.pdf",
-                pdfM2: "Limits and Derivatives Notes.pdf",
-                pdfP1: "Electromagnetism Laws.pdf",
-                pdfP2: "Intro to Quantum Physics.pdf",
-                pdfL1: "Luigi Pirandello - Complete Notes.pdf",
-                pdfL2: "G. D'Annunzio and Decadentism.pdf",
-                download: "Download",
-                quizMainTitle: "📝 Quick Interactive Quiz for Practice",
-                quizQuestion: "What is the derivative of the function f(x) = x²?",
-                optA: "A) f'(x) = x",
-                optB: "B) f'(x) = 2x",
-                optC: "C) f'(x) = 2",
-                quizCorrect: "Correct Answer! Excellent job! 🎉 (f'(x) = 2x)",
-                quizWrong: "Wrong Answer! Try again and remember the power rule. ❌",
-                aiTitle: "Aurora AI Study Assistant 🤖",
-                aiSub: "Ask AI anything about the Italian high school curriculum (e.g., 'Pirandello' or 'Coulomb')",
-                aiWelcome: "[AI]: Welcome! I am your smart high school tutor. How can I help you prepare for your exams today?",
-                aiPlaceholder: "Ask AI a question...",
-                aiSend: "Send",
-                aiRespPirandello: "📚 [AI]: Luigi Pirandello is essential! Remember his key themes: the fragmentation of the ego, life vs. form, and masks. Major works: 'The Late Mattia Pascal' and 'One, No One, and One Hundred Thousand'.",
-                aiRespCoulomb: "⚡ [AI]: Coulomb's Law states that the force between two charges is directly proportional to the product of the charges and inversely proportional to the square of the distance: F = k * (q1 * q2) / r².",
-                aiRespMath: "📐 [AI]: In math, the derivative represents the instantaneous rate of change of a function, geometrically equal to the slope of the tangent line.",
-                aiRespDefault: "✨ [AI]: Great question! Analyzing the educational databases to give you the best explanation."
+                badgeAnno: "3rd Year - High School", heroTitle: "Prepare for Exams with Confidence! 🚀", heroDesc: "Download PDFs, study notes, and use the integrated AI assistant to simplify the hardest subjects.",
+                secTitleSubjects: "Available PDF Sources & Notes", subMath: "Mathematics", subPhys: "Physics", subLit: "Italian Literature", subPhil: "Philosophy", subHist: "History", subEng: "English Language",
+                pdfM1: "Function Analysis and Rules.pdf", pdfM2: "Limits and Derivatives Notes.pdf", pdfP1: "Electromagnetism Laws.pdf", pdfP2: "Intro to Quantum Physics.pdf",
+                pdfL1: "Luigi Pirandello - Complete Notes.pdf", pdfL2: "G. D'Annunzio and Decadentism.pdf", pdfPh1: "Nietzsche and Philosophy of Power.pdf", pdfPh2: "Sigmund Freud Psychoanalysis.pdf",
+                pdfH1: "WWI and its Consequences.pdf", pdfH2: "Fascist Italy and WWII.pdf", pdfE1: "The Victorian Age & Charles Dickens.pdf", pdfE2: "George Orwell and 1984 Novel.pdf",
+                download: "Download", quizMainTitle: "📝 Quick Interactive Quiz for Practice", quizQuestion: "What is the derivative of the function f(x) = x²?",
+                optA: "A) f'(x) = x", optB: "B) f'(x) = 2x", optC: "C) f'(x) = 2", quizCorrect: "Correct Answer! Excellent job! 🎉 (f'(x) = 2x)", quizWrong: "Wrong Answer! Try again and remember the power rule. ❌",
+                aiTitle: "Aurora AI Study Assistant 🤖", aiSub: "Ask about math (e.g. 2*2) or Italian curriculum topics (e.g. 'Pirandello' or 'Nietzsche')",
+                aiWelcome: "[AI]: Welcome! I am your smart high school tutor. How can I help you prepare for your exams today?", aiPlaceholder: "Ask AI a question...", aiSend: "Send"
             },
             it: {
-                badgeAnno: "Terzo Anno - Maturità",
-                heroTitle: "Maturità 2026 Senza Stress! 🚀",
-                heroDesc: "Scarica appunti, tracce d'esame e usa il tutor AI per superare l'esame di stato con ottimi voti.",
-                secTitleSubjects: "Risorse e Note PDF per Materia",
-                subMath: "Matematica",
-                subPhys: "Fisica",
-                subLit: "Letteratura Italiana",
-                pdfM1: "Studio di Funzione e Regole.pdf",
-                pdfM2: "Limiti e Derivate Compendio.pdf",
-                pdfP1: "Elettromagnetismo e Formule.pdf",
-                pdfP2: "Intro alla Fisica Quantistica.pdf",
-                pdfL1: "Luigi Pirandello - Note Complete.pdf",
-                pdfL2: "G. D'Annunzio e il Decadentismo.pdf",
-                download: "Download",
-                quizMainTitle: "📝 Simulazione Rapida (Quiz di Allenamento)",
-                quizQuestion: "Qual è la derivata della funzione f(x) = x² ?",
-                optA: "A) f'(x) = x",
-                optB: "B) f'(x) = 2x",
-                optC: "C) f'(x) = 2",
-                quizCorrect: "Esatto! Risposta Corretta! 🎉 (f'(x) = 2x)",
-                quizWrong: "Sbagliato! Riprova, ricorda la regola della potenza. ❌",
-                aiTitle: "Maturità AI Studio Assistant 🤖",
-                aiSub: "Fai una domanda su qualsiasi argomento d'esame (Es: \"Spiegami Pirandello\" o \"Formula di Coulomb\")",
-                aiWelcome: "[AI]: Ciao! Sono il tuo tutor AI. Come posso aiutarti oggi a preparare il tuo esame di stato?",
-                aiPlaceholder: "Chiedi all'AI...",
-                aiSend: "Invia",
-                aiRespPirandello: "📚 [AI]: Luigi Pirandello è fondamentale! Ricorda il concetto di 'Lanterninosofia', la frammentazione dell'io e le maschere. Opere chiave: 'Il fu Mattia Pascal' e 'Uno, nessuno e centomila'.",
-                aiRespCoulomb: "⚡ [AI]: La legge di Coulomb stabilisce che la forza tra due cariche è direttamente proporzionale al prodotto delle cariche e inversamente proporzionale al quadrato della distanza: F = k * (q1 * q2) / r².",
-                aiRespMath: "📐 [AI]: In matematica, la derivata di una funzione descrive il coefficiente angolare della retta tangente al grafico nel punto specifico.",
-                aiRespDefault: "✨ [AI]: Interessante! Sto analizzando i database del Ministero dell'Istruzione per risponderti al meglio."
+                badgeAnno: "Terzo Anno - Maturità", heroTitle: "Maturità 2026 Senza Stress! 🚀", heroDesc: "Scarica appunti, tracce d'esame e usa il tutor AI per superare l'esame di stato con ottimi voti.",
+                secTitleSubjects: "Risorse e Note PDF per Materia", subMath: "Matematica", subPhys: "Fisica", subLit: "Letteratura Italiana", subPhil: "Filosofia", subHist: "Storia", subEng: "Lingua Inglese",
+                pdfM1: "Studio di Funzione e Regole.pdf", pdfM2: "Limiti e Derivate Compendio.pdf", pdfP1: "Elettromagnetismo e Formule.pdf", pdfP2: "Intro alla Fisica Quantistica.pdf",
+                pdfL1: "Luigi Pirandello - Note Complete.pdf", pdfL2: "G. D'Annunzio e il Decadentismo.pdf", pdfPh1: "Nietzsche e la Filosofia della Potenza.pdf", pdfPh2: "Sigmund Freud e la Psicoanalisi.pdf",
+                pdfH1: "La Prima Guerra Mondiale e Conseguenze.pdf", pdfH2: "L'Italia Fascista e la Seconda Guerra Mondiale.pdf", pdfE1: "L'Età Vittoriana e Charles Dickens.pdf", pdfE2: "George Orwell e il Romanzo 1984.pdf",
+                download: "Download", quizMainTitle: "📝 Simulazione Rapida (Quiz di Allenamento)", quizQuestion: "Qual è la derivata della funzione f(x) = x² ?",
+                optA: "A) f'(x) = x", optB: "B) f'(x) = 2x", optC: "C) f'(x) = 2", quizCorrect: "Esatto! Risposta Corretta! 🎉 (f'(x) = 2x)", quizWrong: "Sbagliato! Riprova, ricorda la regola della potenza. ❌",
+                aiTitle: "Maturità AI Studio Assistant 🤖", aiSub: "Fai domande di matematica (es. 2*2) o argomenti d'esame (es. \"Pirandello\" o \"Nietzsche\")",
+                aiWelcome: "[AI]: Ciao! Sono il tuo tutor AI. Come posso aiutarti oggi a preparare il tuo esame di stato?", aiPlaceholder: "Chiedi all'AI...", aiSend: "Invia"
             }
         };
 
-        // 1. نظام تحويل اللغات والاتجاهات الشامل
         function changeLanguage() {
             const lang = document.getElementById('languageSelect').value;
             const body = document.body;
 
-            // تغيير الاتجاه بناءً على اللغة المحددة
-            if (lang === 'ar') {
-                body.classList.add('rtl');
-            } else {
-                body.classList.remove('rtl');
-            }
+            if (lang === 'ar') body.classList.add('rtl');
+            else body.classList.remove('rtl');
 
-            // تطبيق الترجمات على جميع عناصر الصفحة
             document.getElementById('badgeAnno').innerText = translations[lang].badgeAnno;
             document.getElementById('heroTitle').innerText = translations[lang].heroTitle;
             document.getElementById('heroDesc').innerText = translations[lang].heroDesc;
@@ -452,6 +297,9 @@
             document.getElementById('subMath').innerText = translations[lang].subMath;
             document.getElementById('subPhys').innerText = translations[lang].subPhys;
             document.getElementById('subLit').innerText = translations[lang].subLit;
+            document.getElementById('subPhil').innerText = translations[lang].subPhil;
+            document.getElementById('subHist').innerText = translations[lang].subHist;
+            document.getElementById('subEng').innerText = translations[lang].subEng;
             
             document.querySelector('.pdf-m1').innerText = translations[lang].pdfM1;
             document.querySelector('.pdf-m2').innerText = translations[lang].pdfM2;
@@ -459,6 +307,12 @@
             document.querySelector('.pdf-p2').innerText = translations[lang].pdfP2;
             document.querySelector('.pdf-l1').innerText = translations[lang].pdfL1;
             document.querySelector('.pdf-l2').innerText = translations[lang].pdfL2;
+            document.querySelector('.pdf-ph1').innerText = translations[lang].pdfPh1;
+            document.querySelector('.pdf-ph2').innerText = translations[lang].pdfPh2;
+            document.querySelector('.pdf-h1').innerText = translations[lang].pdfH1;
+            document.querySelector('.pdf-h2').innerText = translations[lang].pdfH2;
+            document.querySelector('.pdf-e1').innerText = translations[lang].pdfE1;
+            document.querySelector('.pdf-e2').innerText = translations[lang].pdfE2;
 
             document.querySelectorAll('.download-text').forEach(btn => btn.innerText = translations[lang].download);
 
@@ -467,68 +321,74 @@
             document.getElementById('optA').innerText = translations[lang].optA;
             document.getElementById('optB').innerText = translations[lang].optB;
             document.getElementById('optC').innerText = translations[lang].optC;
-            document.getElementById('quizResult').style.display = "none"; // إخفاء نتيجة الكويز القديمة
+            document.getElementById('quizResult').style.display = "none";
 
             document.getElementById('aiTitle').innerText = translations[lang].aiTitle;
             document.getElementById('aiSub').innerText = translations[lang].aiSub;
             document.getElementById('aiInput').placeholder = translations[lang].aiPlaceholder;
             document.getElementById('aiSendText').innerText = translations[lang].aiSend;
             
-            // إعادة تعيين رسالة الترحيب في الشات
             document.getElementById('aiChatBox').innerHTML = `<div style="color: var(--accent-color); margin-bottom: 10px;">${translations[lang].aiWelcome}</div>`;
         }
 
-        // 2. نظام محاكاة تحميل ملفات الـ PDF
         function simulateDownload(fileName) {
             alert("📥 Aurora System: '" + fileName + ".pdf' download started successfully!");
         }
 
-        // 3. نظام الكويز التفاعلي الذكي
         function checkQuiz(isCorrect) {
             const lang = document.getElementById('languageSelect').value;
             const resultText = document.getElementById('quizResult');
             resultText.style.display = "block";
-            
-            if (isCorrect) {
-                resultText.innerText = translations[lang].quizCorrect;
-                resultText.style.color = "#34c759";
-            } else {
-                resultText.innerText = translations[lang].quizWrong;
-                resultText.style.color = "#ff3b30";
-            }
+            if (isCorrect) { resultText.innerText = translations[lang].quizCorrect; resultText.style.color = "#34c759"; } 
+            else { resultText.innerText = translations[lang].quizWrong; resultText.style.color = "#ff3b30"; }
         }
 
-        // 4. محرك ردود الشات بوت AI متعدد اللغات
+        // محرك الـ AI المحدث يدعم حل المعادلات الحسابية والكلمات المفتاحية
         function askAI() {
             const lang = document.getElementById('languageSelect').value;
             const input = document.getElementById('aiInput');
             const chatBox = document.getElementById('aiChatBox');
-            const question = input.value.trim().toLowerCase();
+            let rawQuestion = input.value.trim();
 
-            if (question === "") return;
+            if (rawQuestion === "") return;
 
-            // عرض سؤال المستخدم
             const userLabel = lang === 'ar' ? 'أنت' : 'You';
-            chatBox.innerHTML += `<div style="margin-top:10px; color:#fff;">👉 ${userLabel}: ${input.value}</div>`;
+            chatBox.innerHTML += `<div style="margin-top:10px; color:#fff;">👉 ${userLabel}: ${rawQuestion}</div>`;
             
-            let aiResponse = translations[lang].aiRespDefault;
+            let cleanQuestion = rawQuestion.toLowerCase().replace(/ /g, "");
+            let aiResponse = "";
 
-            // تحديد الرد الذكي المترجم بناءً على الكلمة المفتاحية واللغة
-            if (question.includes("pirandello") || question.includes("باسكال")) {
-                aiResponse = translations[lang].aiRespPirandello;
-            } else if (question.includes("coulomb") || question.includes("كولوم")) {
-                aiResponse = translations[lang].aiRespCoulomb;
-            } else if (question.includes("derivata") || question.includes("مشتق") || question.includes("derivative")) {
-                aiResponse = translations[lang].aiRespMath;
-            } else if (question.includes("ciao") || question.includes("مرحبا") || question.includes("hello")) {
-                aiResponse = lang === 'ar' ? "👋 أهلاً بك! أنا هنا لمساعدتك." : (lang === 'en' ? "👋 Hello! I am here to help you." : "👋 Ciao! Sono qui per aiutarti.");
+            // 1. فحص لو السؤال مسألة حسابية رياضية (مثل 2*2، 5+5، إلخ)
+            let mathRegex = /^[0-9+\-*/().xX]+$/;
+            let normalizedMath = cleanQuestion.replace(/x/g, '*').replace(/X/g, '*');
+
+            if (mathRegex.test(normalizedMath)) {
+                try {
+                    // حساب النتيجة برمجياً فوراً
+                    let result = Function('"use strict"; return (' + normalizedMath + ')')();
+                    if(lang === 'ar') aiResponse = `📐 [المعالج الرياضي]: النتيجة هي البسيطة والمباشرة: **${result}**`;
+                    else if(lang === 'en') aiResponse = `📐 [Math Engine]: The result is: **${result}**`;
+                    else aiResponse = `📐 [Math Engine]: Il risultato è: **${result}**`;
+                } catch(e) {
+                    aiResponse = lang === 'ar' ? "❌ صيغة رياضية غير صحيحة." : "❌ Invalid math expression.";
+                }
+            } else {
+                // 2. فحص الكلمات المفتاحية للمنهج
+                if (cleanQuestion.includes("pirandello") || cleanQuestion.includes("بيرانديلو")) {
+                    aiResponse = lang === 'ar' ? "📚 Luigi Pirandello: ركز على فكرة 'المسرح داخل المسرح' وتعدد الأقنعة والهوية المفقودة في رواية 'المرحوم ماتيا باسكال'." : "📚 Luigi Pirandello: Focus on 'teatro nel teatro' and the fragmentation of identity in 'Il fu Mattia Pascal'.";
+                } else if (cleanQuestion.includes("nietzsche") || cleanQuestion.includes("نيتشه")) {
+                    aiResponse = lang === 'ar' ? "🏛️ Friedrich Nietzsche: أهم أفكاره هي 'موت الإله'، 'الإنسان المتفوق (Übermensch)'، و'إرادة القوة'." : "🏛️ Friedrich Nietzsche: Key concepts include the 'Übermensch', 'Will to Power', and the evaluation of all values.";
+                } else if (cleanQuestion.includes("coulomb") || cleanQuestion.includes("كولوم")) {
+                    aiResponse = "⚡ F = k * (q1 * q2) / r². La forza elettrostatica tra due cariche puntiformi.";
+                } else {
+                    aiResponse = lang === 'ar' ? "✨ سؤال ذكي! جاري مراجعة المنهج الإيطالي لتقديم الشرح الأنسب." : "✨ Interesting! Searching the Italian curriculum files to assist you.";
+                }
             }
 
-            // محاكاة وقت تفكير الـ AI
             setTimeout(() => {
                 chatBox.innerHTML += `<div style="margin-top:10px; color:#007aff; font-weight:600;">🤖 AI: ${aiResponse}</div>`;
                 chatBox.scrollTop = chatBox.scrollHeight;
-            }, 500);
+            }, 400);
 
             input.value = "";
         }
