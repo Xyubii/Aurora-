@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aurora Platform</title>
+    <title>Aurora Educational Platform</title>
     <style>
         :root {
             --primary-color: #007aff;
             --accent-color: #34c759;
+            --danger-color: #ff3b30;
             --bg-color: #f5f7fa;
             --card-bg: #ffffff;
             --text-main: #1d1d1f;
+            --text-muted: #86868b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
@@ -19,564 +21,228 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
 
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            background-color: var(--card-bg);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            padding: 20px 0;
+            border-bottom: 1px solid #d2d2d7;
+            margin-bottom: 40px;
         }
 
         .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary-color); }
-        .header-controls { display: flex; align-items: center; gap: 15px; }
-        
-        .badge-anno {
-            background-color: #e5f1ff;
-            color: var(--primary-color);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
 
-        select {
-            padding: 8px 12px;
-            border-radius: 8px;
-            border: 1px solid #d2d2d7;
-            background-color: var(--card-bg);
-            outline: none;
-            cursor: pointer;
-            font-weight: 500;
-        }
         .hero {
             text-align: center;
-            padding: 50px 20px;
-            background: linear-gradient(135deg, #007aff 0%, #0051a8 100%);
-            color: white;
-            border-radius: 16px;
+            padding: 60px 20px;
+            background: var(--card-bg);
+            border-radius: 20px;
             margin-bottom: 40px;
-            box-shadow: 0 10px 20px rgba(0,79,171,0.15);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
 
-        .hero h1 { font-size: 2.2rem; margin-bottom: 15px; font-weight: 800; }
-        .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
-
-        .section-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 25px; color: var(--text-main); }
-
-        .subjects-grid {
+        .hero h1 { font-size: 2.5rem; margin-bottom: 15px; }
+        .hero p { color: var(--text-muted); font-size: 1.2rem; }
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
             margin-bottom: 50px;
         }
-        .subject-card {
-            background-color: var(--card-bg);
-            border-radius: 14px;
-            padding: 24px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            border: 1px solid rgba(0,0,0,0.03);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
 
-        .subject-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-        }
-
-        .subject-icon { font-size: 2rem; margin-bottom: 12px; }
-        .subject-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 15px; }
-        .pdf-list { list-style: none; }
-
-        .pdf-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #f2f2f7;
-        }
-
-        .pdf-item:last-child { border-bottom: none; }
-        .pdf-name { font-size: 0.9rem; color: #3a3a3c; font-weight: 500; word-break: break-all; }
-        .btn-download {
-            background-color: #f2f2f7;
-            color: var(--primary-color);
-            border: none;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-
-        .btn-download:hover {
-            background-color: #e5e5ea;
-        }
-
-        .quiz-section {
-            background-color: var(--card-bg);
-            border-radius: 14px;
+        .card {
+            background: var(--card-bg);
             padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
         }
 
-        .quiz-options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { margin-bottom: 15px; color: var(--primary-color); }
+        .btn {
+            display: inline-block;
             margin-top: 15px;
-        }
-
-        .quiz-option {
-            background-color: #f2f2f7;
-            padding: 14px;
-            border-radius: 10px;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
             cursor: pointer;
-            font-weight: 500;
-            transition: background-color 0.2s ease;
+            font-weight: 600;
+        }
+        .ai-chat-box {
+            background: #1c1c1e;
+            color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 40px;
         }
 
-        .quiz-option:hover { background-color: #e5e5ea; }
-        .quiz-result { margin-top: 15px; font-weight: 600; display: none; }
-        .ai-section { background-color: #1c1c1e; color: white; border-radius: 16px; padding: 30px; margin-top: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
-        .ai-header { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
-        .ai-status { background-color: var(--accent-color); width: 10px; height: 10px; border-radius: 50%; animation: pulse 1.5s infinite; }
-        
-        @keyframes pulse {
-            0% { transform: scale(0.9); opacity: 0.7; }
-            50% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(0.9); opacity: 0.7; }
+        #chat-output {
+            height: 200px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #2c2c2e;
+            border-radius: 12px;
+            font-size: 0.95rem;
         }
 
-        .chat-box { background-color: #2c2c2e; border-radius: 8px; padding: 15px; height: 250px; overflow-y: auto; margin-bottom: 15px; font-size: 0.95rem; }
-        .chat-input-container { display: flex; gap: 10px; }
-        .chat-input { flex: 1; background-color: #2c2c2e; border: 1px solid #48484a; color: white; padding: 12px; border-radius: 8px; outline: none; }
-        .btn-ai-send { background-color: var(--primary-color); color: white; border: none; padding: 0 22px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .input-group { display: flex; gap: 10px; }
+        .input-group input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+        }
 
-        footer { margin-top: 50px; padding: 25px; text-align: center; background-color: var(--card-bg); border-top: 1px solid rgba(0,0,0,0.05); font-size: 1rem; color: var(--text-main); }
-        .designer-credit { font-weight: 700; color: var(--primary-color); }
-
-        .rtl { direction: rtl; text-align: right; }
-        .rtl .pdf-item, .rtl header { flex-direction: row-reverse; }
+        .btn-send {
+            padding: 10px 20px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
     </style>
 </head>
-<body class="rtl">
-    <header>
-        <div class="logo">🧠 Aurora</div>
-        <div class="header-controls">
-            <div class="badge-anno" id="badgeAnno">الصف الثالث الثانوي</div>
-            <select id="languageSelect" onchange="changeLanguage()">
-                <option value="ar" selected>العربية</option>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Aurora AI 🧠</div>
+            <select id="lang-switcher">
+                <option value="ar">العربية</option>
                 <option value="en">English</option>
                 <option value="it">Italiano</option>
             </select>
+        </header>
+
+        <section class="hero">
+            <h1>منصة Aurora التعليمية</h1>
+            <p>تعلم، اختبر، وناقش المواد الدراسية بذكاء اصطناعي متطور.</p>
+        </section>
+
+        <!-- قسم الاختبار الذكي -->
+        <div class="card" id="quiz-container">
+            <h3>📝 بنك الأسئلة التفاعلي</h3>
+            <div id="question-box">اضغط على المادة لبدء الاختبار</div>
+            <div id="options-box"></div>
+            <div id="feedback" style="margin-top: 15px; font-weight: bold;"></div>
         </div>
-    </header>
-
-    <section class="hero">
-        <h1 id="heroTitle">استعد للامتحانات بثقة! 🚀</h1>
-        <p id="heroDesc">قم بتحميل المذكرات، نماذج الامتحانات، واستخدم الـ AI المدمج لتبسيط أصعب المواد الدراسية.</p>
-    </section>
-
-    <div class="container">
-        
-        <h2 class="section-title" id="secTitleSubjects">المصادر والمذكرات المتاحة (PDF)</h2>
-        <div class="subjects-grid">
-            <div class="subject-card">
-                <div class="subject-icon">📐</div>
-                <h3 id="subMath">الرياضيات</h3>
-                <ul class="pdf-list">
-                    <li class="pdf-item">
-                        <span class="pdf-name pdf-m1">دراسة الدوال وقواعدها.pdf</span>
-                        <button class="btn-download" onclick="downloadRealPdf('math1')"><span class="download-text">تحميل</span></button>
-                    </li>
-                    <li class="pdf-item">
-                        <span class="pdf-name pdf-m2">مذكرة النهايات والمشتقات.pdf</span>
-                        <button class="btn-download" onclick="downloadRealPdf('math2')"><span class="download-text">تحميل</span></button>
-                    </li>
-                </ul>
+        <h2 style="margin-bottom: 20px;">المواد الدراسية</h2>
+        <div class="grid" id="subjects-grid">
+            <div class="card">
+                <h3>الرياضيات</h3>
+                <button class="btn" onclick="startQuiz('math')">ابدأ الاختبار</button>
+                <button class="btn" style="background:var(--accent-color)" onclick="showNotes('math')">عرض الشرح</button>
             </div>
-
-            <div class="subject-card">
-                <div class="subject-icon">⚡</div>
-                <h3 id="subPhys">الفيزياء</h3>
-                <ul class="pdf-list">
-                    <li class="pdf-item">
-                        <span class="pdf-name pdf-p1">قوانين الكهرومغناطيسية.pdf</span>
-                        <button class="btn-download" onclick="downloadRealPdf('physics1')"><span class="download-text">تحميل</span></button>
-                    </li>
-                    <li class="pdf-item">
-                        <span class="pdf-name pdf-p2">مقدمة في فيزياء الكم.pdf</span>
-                        <button class="btn-download" onclick="downloadRealPdf('physics2')"><span class="download-text">تحميل</span></button>
-                    </li>
-                </ul>
+            <div class="card">
+                <h3>الفيزياء</h3>
+                <button class="btn" onclick="startQuiz('physics')">ابدأ الاختبار</button>
+                <button class="btn" style="background:var(--accent-color)" onclick="showNotes('physics')">عرض الشرح</button>
             </div>
-
-            <div class="subject-card">
-                <div class="subject-icon">🎭</div>
-                <h3 id="subLit">الأدب الإيطالي</h3>
-                <ul class="pdf-list">
-                    <li class="pdf-item">
-                        <span class="pdf-name pdf-l1">ملخص الأديب لويجي بيرانديلو.pdf</span>
-                        <button class="btn-download" onclick="downloadRealPdf('italian1')"><span class="download-text">تحميل</span></button>
-                    </li>
-                    <li class="pdf-item">
-                        <span class="pdf-name pdf-l2">جـ. دانونزيو والحركة الانحطاطية.pdf</span>
-                        <button class="btn-download" onclick="downloadRealPdf('italian2')"><span class="download-text">تحميل</span></button>
-                    </li>
-                </ul>
-            </div>
-            <!-- كارت الفلسفة -->
-            <div class="subject-card">
-                <div class="subject-icon">📜</div>
-                <h3 id="subPhil">الفلسفة</h3>
-                <ul class="pdf-list">
-                    <li class="pdf-item">
-                        <span class="pdf-name pdf-ph1">نيتشه وفلسفة القوة.pdf</span>
-                        <button class="btn-download" onclick="downloadRealPdf('philosophy1')"><span class="download-text">تحميل</span></button>
-                    </li>
-                    <li class="pdf-item">
-                        <span class="pdf-name pdf-ph2">سيجموند فرويد والتحليل النفسي.pdf</span>
-                        <button class="btn-download" onclick="downloadRealPdf('philosophy2')"><span class="download-text">تحميل</span></button>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- كارت التاريخ -->
-            <div class="subject-card">
-                <div class="subject-icon">⚔️</div>
-                <h3 id="subHist">التاريخ</h3>
-                <ul class="pdf-list">
-                    <li class="pdf-item">
-                        <span class="pdf-name pdf-h1">أسباب الحرب العالمية الأولى.pdf</span>
-                        <button class="btn-download" onclick="downloadRealPdf('history1')"><span class="download-text">تحميل</span></button>
-                    </li>
-                    <li class="pdf-item">
-                        <span class="pdf-name pdf-h2">صعود الفاشية في إيطاليا.pdf</span>
-                        <button class="btn-download" onclick="downloadRealPdf('history2')"><span class="download-text">تحميل</span></button>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- كارت اللغة الإنجليزية -->
-            <div class="subject-card">
-                <div class="subject-icon">🇬🇧</div>
-                <h3 id="subEng">اللغة الإنجليزية</h3>
-                <ul class="pdf-list">
-                    <li class="pdf-item">
-                        <span class="pdf-name pdf-e1">العصر الفيكتوري وتشارلز ديكنز.pdf</span>
-                        <button class="btn-download" onclick="downloadRealPdf('english1')"><span class="download-text">تحميل</span></button>
-                    </li>
-                    <li class="pdf-item">
-                        <span class="pdf-name pdf-e2">جورج أورويل وتحليل رواية 1984.pdf</span>
-                        <button class="btn-download" onclick="downloadRealPdf('english2')"><span class="download-text">تحميل</span></button>
-                    </li>
-                </ul>
-            </div>
-
-        </div> <!-- قفلة شبكة المواد subjects-grid -->
-        <div class="quiz-section">
-            <h2 class="section-title" id="quizTitle">📝 اختبر نفسك (سؤال سريع)</h2>
-            <p id="quizQuestion" style="font-weight: 600; font-size: 1.1rem;">ما هي الحركة الأدبية التي كان يقودها الشاعر غابرييل دانونزيو؟</p>
-            <div class="quiz-options">
-                <div class="quiz-option" onclick="checkAnswer(this, false)">الرومانسية (Il Romanticismo)</div>
-                <div class="quiz-option" onclick="checkAnswer(this, true)">الانحطاطية / الجمالية (Il Decadentismo)</div>
-                <div class="quiz-option" onclick="checkAnswer(this, false)">الواقعية (Il Verismo)</div>
-            </div>
-            <div id="quizResult" class="quiz-result"></div>
-        </div>
-
-        <div class="ai-section">
-            <div class="ai-header">
-                <div class="ai-status"></div>
-                <h2 id="aiTitle" style="font-size: 1.4rem; font-weight: 700; margin: 0;">🤖 مساعد Aurora الذكي</h2>
-            </div>
-            <p id="aiDesc" style="font-size: 0.95rem; opacity: 0.8; margin-bottom: 15px;">اسأل الـ AI فوراً عن أي قاعدة فلسفية، معادلة رياضية، أو حدث تاريخي في المنهج وسيصنع لك ملخصاً مبسطاً!</p>
-            <div class="chat-box" id="chatBox">
-                <div style="color: #34c759; font-weight: 700; margin-bottom: 5px;">Aurora AI:</div>
-                <div id="aiWelcomeMsg" style="color: #e5e5ea;">أهلاً بك! أنا هنا لمساعدتك في فهم المنهج الدراسي وتبسيط معلوماتك. اكتب سؤالك بالأسفل وسأقوم بتبسيطه لك فوراً. ✨</div>
-            </div>
-            <div class="chat-input-container">
-                <input type="text" id="chatInput" class="chat-input" placeholder="اسأل الـ AI سؤالاً في المنهج...">
-                <button class="btn-ai-send" id="aiBtnSend" onclick="askAuroraAI()">إرسال</button>
+            <div class="card">
+                <h3>الأدب الإيطالي</h3>
+                <button class="btn" onclick="startQuiz('italian')">ابدأ الاختبار</button>
+                <button class="btn" style="background:var(--accent-color)" onclick="showNotes('italian')">عرض الشرح</button>
             </div>
         </div>
 
-    </div> ```
-
----
-
-حطه تحت الجزء التاسع مباشرة، وقولي **"جاهز"** عشان نبعت الجزء الـ 11 واللي هنبدأ فيه أكواد الـ JavaScript ومصفوفات الترجمة التلقائية!
-    <footer>
-        <p>© 2026 Aurora Platform | Designed by <span class="designer-credit">Amr</span></p>
-    </footer>
-
+        <div class="ai-chat-box">
+            <h3>🤖 مساعد Aurora الذكي</h3>
+            <div id="chat-output"></div>
+            <div class="input-group">
+                <input type="text" id="chat-input" placeholder="اسألني أي شيء في المنهج...">
+                <button class="btn-send" onclick="askAI()">إرسال</button>
+            </div>
+        </div>
+    </div>
     <script>
-        // قاموس الترجمة الكامل لـ 3 لغات
-        const translations = {
-            ar: {
-                badgeAnno: "الصف الثالث الثانوي",
-                heroTitle: "استعد للامتحانات بثقة! 🚀",
-                heroDesc: "قم بتحميل المذكرات، نماذج الامتحانات، واستخدم الـ AI المدمج لتبسيط أصعب المواد الدراسية.",
-                secTitleSubjects: "المصادر والمذكرات المتاحة (PDF)",
-                subMath: "الرياضيات",
-                subPhys: "الفيزياء",
-                subLit: "الأدب الإيطالي",
-                subPhil: "الفلسفة",
-                subHist: "التاريخ",
-                subEng: "اللغة الإنجليزية",
-                downloadText: "تحميل",
-                quizTitle: "📝 اختبر نفسك (سؤال سريع)",
-                quizQuestion: "ما هي الحركة الأدبية التي كان يقودها الشاعر غابرييل دانونزيو؟",
-                quizOpt1: "الرومانسية (Il Romanticismo)",
-                quizOpt2: "الانحطاطية / الجمالية (Il Decadentismo)",
-                quizOpt3: "الواقعية (Il Verismo)",
-                aiTitle: "🤖 مساعد Aurora الذكي",
-                aiDesc: "اسأل الـ AI فوراً عن أي قاعدة فلسفية، معادلة رياضية، أو حدث تاريخي في المنهج وسيصنع لك ملخصاً مبسطاً!",
-                aiWelcomeMsg: "أهلاً بك! أنا هنا لمساعدتك في فهم المنهج الدراسي وتبسيط معلوماتك. اكتب سؤالك بالأسفل وسأقوم بتبسيطه لك فوراً. ✨",
-                chatPlaceholder: "اسأل الـ AI سؤالاً في المنهج...",
-                aiBtnSend: "إرسال",
-                math1: "دراسة الدوال وقواعدها.pdf",
-                math2: "مذكرة النهايات والمشتقات.pdf",
-                physics1: "قوانين الكهرومغناطيسية.pdf",
-                physics2: "مقدمة في فيزياء الكم.pdf",
-                italian1: "ملخص الأديب لويجي بيرانديلو.pdf",
-                italian2: "جـ. دانونزيو والحركة الانحطاطية.pdf",
-                philosophy1: "نيتشه وفلسفة القوة.pdf",
-                philosophy2: "سيجموند فرويد والتحليل النفسي.pdf",
-                history1: "أسباب الحرب العالمية الأولى.pdf",
-                history2: "صعد الفاشية في إيطاليا.pdf",
-                english1: "العصر الفيكتوري وتشارلز ديكنز.pdf",
-                english2: "جورج أورويل وتحليل رواية 1984.pdf"
+        const data = {
+            math: {
+                question: "ما هو الشرط الأساسي ليكون للدالة الكسرية مجال معرف؟",
+                options: ["أن يكون البسط يساوي صفر", "أن يكون المقام لا يساوي صفر", "أن تكون الدالة موجبة دائماً"],
+                correct: 1,
+                explanation: "المقام لا يمكن أن يكون صفراً لأن القسمة على صفر غير معرفة في الرياضيات.",
+                notes: "<h1>الرياضيات</h1><p>دراسة الدوال هي أساس التفاضل والتكامل. تذكر دائماً: المجال هو كل قيم x التي تجعل الدالة معرفة.</p>"
             },
-            en: {
-                badgeAnno: "3rd Year - High School",
-                heroTitle: "Prepare for Exams with Confidence! 🚀",
-                heroDesc: "Download PDFs, study notes, and use the integrated AI assistant to simplify the hardest subjects.",
-                secTitleSubjects: "Available PDF Sources & Notes",
-                subMath: "Mathematics", subPhys: "Physics", subLit: "Italian Literature",
-                subPhil: "Philosophy", subHist: "History", subEng: "English Language",
-                downloadText: "Download",
-                quizTitle: "📝 Test Yourself (Quick Question)",
-                quizQuestion: "Which literary movement was led by the poet Gabriele D'Annunzio?",
-                quizOpt1: "Romanticism (Il Romanticismo)",
-                quizOpt2: "Decadentism / Aestheticism (Il Decadentismo)",
-                quizOpt3: "Verism / Realism (Il Verismo)",
-                aiTitle: "🤖 Aurora Smart Assistant",
-                aiDesc: "Ask the AI about any philosophical rule, math equation, or historical event in the curriculum!",
-                aiWelcomeMsg: "Welcome! I am here to help you understand the Italian curriculum. Ask your question below and I will simplify it for you. ✨",
-                chatPlaceholder: "Ask AI a curriculum question...",
-                aiBtnSend: "Send",
-                math1: "Function Analysis and Rules.pdf", math2: "Limits and Derivatives Notes.pdf",
-                physics1: "Electromagnetism Laws.pdf", physics2: "Intro to Quantum Physics.pdf",
-                italian1: "Luigi Pirandello - Complete Notes.pdf", italian2: "G. D'Annunzio and Decadentism.pdf",
-                philosophy1: "Nietzsche and Philosophy of Power.pdf", philosophy2: "Sigmund Freud Psychoanalysis.pdf",
-                history1: "WWI and its Consequences.pdf", history2: "Fascist Italy and WWII.pdf",
-                english1: "The Victorian Age & Charles Dickens.pdf", english2: "George Orwell and 1984 Novel.pdf"
+            physics: {
+                question: "ماذا يحدث عند تغير التدفق المغناطيسي الذي يقطع ملفاً؟",
+                options: ["تتولد قوة دافعة كهربائية مستحثة", "تتوقف حركة الإلكترونات", "يختفي المجال المغناطيسي"],
+                correct: 0,
+                explanation: "حسب قانون فاراداي، التغير في التدفق المغناطيسي يولد تياراً كهربائياً مستحثاً.",
+                notes: "<h1>الفيزياء</h1><p>الكهرومغناطيسية هي ربط الكهرباء بالمغناطيسية. التغير هو المفتاح لتوليد الطاقة.</p>"
             },
-            it: {
-                badgeAnno: "Terzo Anno - Scuola Superiore",
-                heroTitle: "Preparati agli Esami con Fiducia! 🚀",
-                heroDesc: "Scarica dispense, tracce d'esame e usa l'intelligenza artificiale integrata per semplificare le materie più difficili.",
-                secTitleSubjects: "Risorse e Dispense PDF Disponibili",
-                subMath: "Matematica", subPhys: "Fisica", subLit: "Letteratura Italiana",
-                subPhil: "Filosofia", subHist: "Storia", subEng: "Lingua Inglese",
-                downloadText: "Scarica",
-                quizTitle: "📝 Mettiti alla Prova (Domanda Rapida)",
-                quizQuestion: "Quale movimento letterario fu guidato dal poeta Gabriele D'Annunzio?",
-                quizOpt1: "Il Romanticismo",
-                quizOpt2: "Il Decadentismo / Estetismo",
-                quizOpt3: "Il Verismo",
-                aiTitle: "🤖 Assistente Virtuale Aurora",
-                aiDesc: "Chiedi all'AI spiegazioni su regole filosofiche, equazioni matematiche o eventi storici del programma!",
-                aiWelcomeMsg: "Benvenuto! Sono qui per aiutarti a capire il programma scolastico. Scrivi la tua domanda qui sotto e la semplificherò per te. ✨",
-                chatPlaceholder: "Fai una domanda sul programma...",
-                aiBtnSend: "Invia",
-                math1: "Studio di Funzioni e Regole.pdf", math2: "Note su Limiti e Derivate.pdf",
-                physics1: "Leggi dell'Elettromagnetismo.pdf", physics2: "Introduzione alla Fisica Quantistica.pdf",
-                italian1: "Luigi Pirandello - Note Complete.pdf", italian2: "G. D'Annunzio e il Decadentismo.pdf",
-                philosophy1: "Nietzsche e la Filosofia del Potere.pdf", philosophy2: "Sigmund Freud e la Psicoanalisi.pdf",
-                history1: "La Prima Guerra Mondiale e Conseguenze.pdf", history2: "L'Italia Fascista e la Seconda Guerra Mondiale.pdf",
-                english1: "L'Età Vittoriana e Charles Dickens.pdf", english2: "George Orwell e il Romanzo 1984.pdf"
+            italian: {
+                question: "ما هي الحركة الأدبية التي ارتبطت بـ غابرييل دانونزيو؟",
+                options: ["الواقعية (Verismo)", "الانحطاطية (Decadentismo)", "الرومانسية"],
+                correct: 1,
+                explanation: "دانونزيو يُعد الأب الروحي للجمالية والانحطاطية في الأدب الإيطالي.",
+                notes: "<h1>الأدب الإيطالي</h1><p>غابرييل دانونزيو ركز في أعماله على فلسفة 'الإنسان الأعلى' والجمال المطلق.</p>"
             }
         };
-        // دالة تغيير لغة الموقع بالكامل وتحديث الاتجاه
-        function changeLanguage() {
-            const lang = document.getElementById("languageSelect").value;
-            const t = translations[lang];
+        function startQuiz(subject) {
+            const quiz = data[subject];
+            const qBox = document.getElementById("question-box");
+            const oBox = document.getElementById("options-box");
+            const fBox = document.getElementById("feedback");
 
-            // تحديث الاتجاه بناءً على اللغة (العربية يمين، الإنجليزي والإيطالي شمال)
-            if (lang === "ar") {
-                document.body.classList.add("rtl");
-            } else {
-                document.body.classList.remove("rtl");
-            }
+            qBox.innerText = quiz.question;
+            oBox.innerHTML = "";
+            fBox.innerText = "";
 
-            // تحديث النصوص الثابتة
-            document.getElementById("badgeAnno").innerText = t.badgeAnno;
-            document.getElementById("heroTitle").innerText = t.heroTitle;
-            document.getElementById("heroDesc").innerText = t.heroDesc;
-            document.getElementById("secTitleSubjects").innerText = t.secTitleSubjects;
-            document.getElementById("subMath").innerText = t.subMath;
-            document.getElementById("subPhys").innerText = t.subPhys;
-            document.getElementById("subLit").innerText = t.subLit;
-            document.getElementById("subPhil").innerText = t.subPhil;
-            document.getElementById("subHist").innerText = t.subHist;
-            document.getElementById("subEng").innerText = t.subEng;
-            document.getElementById("quizTitle").innerText = t.quizTitle;
-            document.getElementById("quizQuestion").innerText = t.quizQuestion;
-            document.getElementById("aiTitle").innerText = t.aiTitle;
-            document.getElementById("aiDesc").innerText = t.aiDesc;
-            document.getElementById("aiBtnSend").innerText = t.aiBtnSend;
-            document.getElementById("chatInput").placeholder = t.chatPlaceholder;
-
-            // تحديث كروت الخيارات للكويز
-            const options = document.querySelectorAll(".quiz-option");
-            options[0].innerText = t.quizOpt1;
-            options[1].innerText = t.quizOpt2;
-            options[2].innerText = t.quizOpt3;
-
-            // تحديث نصوص أزرار التحميل
-            document.querySelectorAll(".download-text").forEach(btn => {
-                btn.innerText = t.downloadText;
+            quiz.options.forEach((opt, index) => {
+                const btn = document.createElement("button");
+                btn.className = "btn";
+                btn.style.display = "block";
+                btn.style.margin = "5px 0";
+                btn.innerText = opt;
+                btn.onclick = () => {
+                    if (index === quiz.correct) {
+                        fBox.style.color = "var(--accent-color)";
+                        fBox.innerText = "✅ صحيح! " + quiz.explanation;
+                    } else {
+                        fBox.style.color = "var(--danger-color)";
+                        fBox.innerText = "❌ خطأ. " + quiz.explanation;
+                    }
+                };
+                oBox.appendChild(btn);
             });
-
-            // تحديث أسماء ملفات الـ PDF داخل الكروت
-            document.querySelector(".pdf-m1").innerText = t.math1;
-            document.querySelector(".pdf-m2").innerText = t.math2;
-            document.querySelector(".pdf-p1").innerText = t.physics1;
-            document.querySelector(".pdf-p2").innerText = t.physics2;
-            document.querySelector(".pdf-l1").innerText = t.italian1;
-            document.querySelector(".pdf-l2").innerText = t.italian2;
-            document.querySelector(".pdf-ph1").innerText = t.philosophy1;
-            document.querySelector(".pdf-ph2").innerText = t.philosophy2;
-            document.querySelector(".pdf-h1").innerText = t.history1;
-            document.querySelector(".pdf-h2").innerText = t.history2;
-            document.querySelector(".pdf-e1").innerText = t.english1;
-            document.querySelector(".pdf-e2").innerText = t.english2;
-        }
-        // دالة فتح الملخصات المنسقة فوراً كبديل للملفات الناقصة (حل مشكلة الـ 404)
-        function downloadRealPdf(fileKey) {
-            const mockData = {
-                math1: "<h1>Studio di Funzioni (دراسة الدوال)</h1><p>قواعد أساسية: لتحديد مجال الدالة الكسرية، يجب أن يكون المقام لا يساوي الصفر. للدوال اللوغاريتمية، يجب أن يكون ما بداخل اللوغاريتم أكبر تماماً من الصفر.</p>",
-                math2: "<h1>Limiti e Derivate (النهايات والمشتقات)</h1><p>قوانين النهايات الشهيرة ونظرية لوبيتال (L'Hopital) لحل حالات عدم التعيين (0/0) عن طريق اشتقاق البسط والمقام.</p>",
-                physics1: "<h1>Elettromagnetismo (الكهرومغناطيسية)</h1><p>ملخص قوانين ماكسويل وقانون فاراداي للحث الكهرومغناطيسي: يتولد تيار مستحث عندما يتغير التدفق المغناطيسي الذي يقطع الدائرة.</p>",
-                physics2: "<h1>Fisica Quantistica (فيزياء الكم)</h1><p>مبدأ عدم اليقين لهايزنبرج: لا يمكن تحديد موقع وزخم الجسيم بدقة متناهية في وقت واحد. ومعادلة بلانك لطاقة الكم.</p>",
-                italian1: "<h1>Luigi Pirandello (لويجي بيرانديلو)</h1><p>أهم أفكار الأديب: قناع الحياة (Il documento e la maschera) وفكرة إن الإنسان يعيش بأوجه متعددة أمام المجتمع (Uno, nessuno e centomila).</p>",
-                italian2: "<h1>Gabriele D'Annunzio (غابرييل دانونزيو)</h1><p>رائد الحركة الانحطاطية (Il Decadentismo). يتميز بأسلوبه الجمالي الفخم وفكرة السوبرمان (L'Oltreuomo) المستوحاة من نيتشه.</p>",
-                philosophy1: "<h1>Nietzsche (نيتشه)</h1><p>فلسفة القوة وإعلان موت القيم القديمة، ودعوته لظهور الإنسان الأعلى (Übermensch) الذي يصنع قيمه بنفسه.</p>",
-                philosophy2: "<h1>Sigmund Freud (سيجموند فرويد)</h1><p>مؤسس التحليل النفسي: تقسيم مكونات النفس إلى (الهو الإد، الأنا الإيجو، والأنا الأعلى السوبر إيجو) وعقدة أوديب.</p>",
-                history1: "<h1>Prima Guerra Mondiale (الحرب العالمية الأولى)</h1><p>الأسباب غير المباشرة: التحالفات السرية والسباق الاستعماري. السبب المباشر: اغتيال أرشيدوق النمسا في سراييفو عام 1914.</p>",
-                history2: "<h1>L'Italia Fascista (إيطاليا الفاشية)</h1><p>صعود بينيتو موسوليني إلى الحكم بعد مسيرة روما عام 1922، وتأسيس النظام الديكتاتوري الشمولي وتحالفه مع هتلر.</p>",
-                english1: "<h1>The Victorian Age (العصر الفيكتوري)</h1><p>The contrast between progress, wealth, and extreme poverty. Charles Dickens represented this social hypocrisy in novels like 'Oliver Twist'.</p>",
-                english2: "<h1>George Orwell (جورج أورويل)</h1><p>Analysis of '1984': A dystopian novel warning against totalitarianism, government surveillance, and the control of thought (Big Brother).</p>"
-            };
-
-            const content = mockData[fileKey];
-            if (content) {
-                const newWindow = window.open();
-                newWindow.document.write(`
-                    <html>
-                    <head>
-                        <title>Aurora | Dispense</title>
-                        <style>
-                            body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; padding: 40px; background: #f5f7fa; color: #1d1d1f; line-height: 1.6; text-align: center; }
-                            .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; }
-                            h1 { color: #007aff; margin-bottom: 20px; font-size: 1.8rem; }
-                            p { font-size: 1.1rem; color: #3a3a3c; text-align: justify; direction: auto; }
-                        </style>
-                    </head>
-                    <body>
-                        <div class="card">${content}</div>
-                    </body>
-                    </html>
-                `);
-                newWindow.document.close();
-            } else {
-                alert("المحتوى غير متوفر حالياً.");
-            }
         }
 
-        // دالة التحقق من إجابة الكويز التفاعلي
-        function checkAnswer(element, isCorrect) {
-            const resultDiv = document.getElementById("quizResult");
-            const lang = document.getElementById("languageSelect").value;
+        function showNotes(subject) {
+            const notes = data[subject].notes;
+            const newWin = window.open("", "_blank", "width=600,height=400");
+            newWin.document.write(`<html><body style="font-family:sans-serif; padding:20px;">${notes}</body></html>`);
+        }
+        function askAI() {
+            const input = document.getElementById("chat-input");
+            const output = document.getElementById("chat-output");
+            const query = input.value.toLowerCase();
+            if (!query) return;
+
+            output.innerHTML += `<div style="margin-bottom:10px;"><b>أنت:</b> ${input.value}</div>`;
             
-            if (isCorrect) {
-                resultDiv.style.color = "#34c759";
-                resultDiv.innerText = lang === "ar" ? "🎉 إجابة صحيحة! أحسنت صنعاً." : (lang === "en" ? "🎉 Correct Answer! Well done." : "🎉 Risposta Corretta! Ben fatto.");
-            } else {
-                resultDiv.style.color = "#ff3b30";
-                resultDiv.innerText = lang === "ar" ? "❌ إجابة خاطئة، حاول مرة أخرى!" : (lang === "en" ? "❌ Wrong answer, try again!" : "❌ Risposta errata, riprova!");
+            let response = "عذراً، لم أفهم سؤالك. جرب السؤال عن (الرياضيات، الفيزياء، أو الأدب الإيطالي).";
+            
+            if (query.includes("دالة") || query.includes("رياضيات")) {
+                response = "Aurora AI: الدالة هي علاقة تربط كل عنصر من المجال بعنصر واحد فقط من المجال المقابل. تذكر: المجال لا يحتوي على قيم تجعل المقام صفراً.";
+            } else if (query.includes("فيزياء") || query.includes("مغناطيسي")) {
+                response = "Aurora AI: قانون فاراداي هو أساس الحث الكهرومغناطيسي، حيث يتولد تيار مستحث ناتج عن تغير التدفق المغناطيسي عبر الملف.";
+            } else if (query.includes("دانونزيو") || query.includes("أدب")) {
+                response = "Aurora AI: غابرييل دانونزيو هو شاعر إيطالي بارز، رائد الحركة الانحطاطية (Decadentismo) التي تمجد الجمال والفردية.";
             }
-            resultDiv.style.display = "block";
-        }
-        // نظام الـ AI الذكي المدمج للرد الفوري على أسئلة المنهج
-        function askAuroraAI() {
-            const inputField = document.getElementById("chatInput");
-            const chatBox = document.getElementById("chatBox");
-            const lang = document.getElementById("languageSelect").value;
-            const query = inputField.value.trim().toLowerCase();
 
-            if (query === "") return;
-
-            // إضافة رسالة المستخدم في الشات
-            chatBox.innerHTML += `<div style="color: #007aff; font-weight: 700; margin-top: 10px;">أنت / You:</div><div style="color: #ffffff; margin-bottom: 5px;">${inputField.value}</div>`;
-            inputField.value = ""; // تفريغ الخانة
-
-            // رسالة انتظار تلقائية من الـ AI
-            const waitingText = lang === "ar" ? "جاري التفكير وتبسيط المعلومة..." : (lang === "en" ? "Thinking and simplifying..." : "Sto elaborando...");
-            chatBox.innerHTML += `<div id="ai-typing" style="color: #34c759; font-weight: 700; margin-top: 10px;">Aurora AI:</div><div style="color: #e5e5ea; font-style: italic;">${waitingText}</div>`;
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            // محاكاة استجابة الـ AI بعد ثانية واحدة بناءً على الكلمات المفتاحية
-            setTimeout(() => {
-                // حذف رسالة الانتظار
-                const typingElement = document.getElementById("ai-typing").nextSibling;
-                if (typingElement) typingElement.remove();
-
-                let response = "";
-
-                if (lang === "ar") {
-                    if (query.includes("دالة") || query.includes("رياضيات") || query.includes("دوال")) {
-                        response = "💡 <b>تبسيط الرياضيات:</b> عند دراسة أي دالة كسرية، تذكر دائماً أن تستبعد الأعداد التي تجعل المقام صفراً من المجال. أما في النهايات، إذا ظهر لك 0/0 استخدم قاعدة (لوبيتال) واشتق البسط والمقام لوحدهم!";
-                    } else if (query.includes("فيزياء") || query.includes("كم") || query.includes("فاراداي")) {
-                        response = "💡 <b>تبسيط الفيزياء:</b> قانون فاراداي يخبرك أن الكهرباء تتولد فقط عندما يحدث 'تغير' في المجال المغناطيسي. أما في فيزياء الكم، هايزنبرج أثبت أنك لا تستطيع تحديد مكان وسرعة الجسيم معاً بدقة 100% بنفس الوقت.";
-                    } else if (query.includes("دانونزيو") || query.includes("إيطالي") || query.includes("بيرانديلو")) {
-                        response = "💡 <b>تبسيط الأدب الإيطالي:</b> الشاعر (دانونزيو) كان يعشق الجمال والفخامة ويقود حركة الـ Decadentismo. أما (بيرانديلو) فكان يرى أن كل إنسان يرتدي 'قناعاً' (maschera) مختلفاً أمام المجتمع ليخفي حقيقته.";
-                    } else if (query.includes("فلسفة") || query.includes("نيتشه") || query.includes("فرويد")) {
-                        response = "💡 <b>تبسيط الفلسفة:</b> (نيتشه) نادى بالإنسان الأعلى الذي يصنع قيمه بنفسه ويرفض التبعية. أما (فرويد) فقسّم النفس لـ 3 أقسام: الهو (الغرائز)، الأنا (الواقع)، والأنا الأعلى (الأخلاق والمبادئ).";
-                    } else if (query.includes("تاريخ") || query.includes("حرب") || query.includes("فاشية")) {
-                        response = "💡 <b>تبسيط التاريخ:</b> الحرب العالمية الأولى اندلعت بسبب اغتيال ولي عهد النمسا في سراييفو 1914. وبعدها عانت إيطاليا من أزمات أدت بصعود (موسوليني) وتأسيس النظام الفاشي الديكتاتوري عام 1922.";
-                    } else {
-                        response = "✨ مرحباً بك! يمكنك سؤالي عن أي مصطلح أو قاعدة في (الرياضيات، الفيزياء، الفلسفة، التاريخ، أو الأدب الإيطالي والإنجليزي) وسأعطيك ملخصاً ذكياً ومبسطاً فوراً.";
-                    }
-                } else {
-                    // الردود باللغات الأخرى (إنجليزي / إيطالي)
-                    if (query.includes("math") || query.includes("funz")) {
-                        response = "💡 <b>Math Tip:</b> For rational functions, the denominator can never be zero. If you get 0/0 in limits, use L'Hopital's rule by differentiating the top and bottom!";
-                    } else if (query.includes("phys") || query.includes("fisi")) {
-                        response = "💡 <b>Physics Tip:</b> Faraday's Law states that an electromotive force is induced only when there is a 'change' in the magnetic flux.";
-                    } else if (query.includes("dannunzio") || query.includes("pirandello") || query.includes("letteratura")) {
-                        response = "💡 <b>Literature Tip:</b> D'Annunzio represents Aestheticism and Decadentism. Pirandello focuses on social 'masks' (le maschere) we wear every day.";
-                    } else {
-                        response = "✨ I can help you simplify topics in Math, Physics, History, Philosophy, and Literature. Just type a keyword!";
-                    }
-                }
-
-                // طباعة رد الـ AI النهائي داخل الصندوق
-                chatBox.innerHTML += `<div style="color: #34c759; font-weight: 700;">Aurora AI:</div><div style="color: #e5e5ea; margin-bottom: 10px;">${response}</div>`;
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }, 1000);
+            output.innerHTML += `<div style="margin-bottom:10px; color:var(--accent-color);"><b>${response}</b></div>`;
+            input.value = "";
+            output.scrollTop = output.scrollHeight;
         }
     </script>
 </body>
